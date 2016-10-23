@@ -1,0 +1,8 @@
+
+
+    <li> <%= link_to "Sort by name", :sort => "name" %></li>
+    <li><%= link_to "Sort by date", :sort => "created_at" %></li>
+<% @artists.each do |artist| %>
+<h2><%= link_to artist.name, artist %></h2>
+<% end %>
+

@@ -1,0 +1,114 @@
+<h1><%= @artist.name %></h1>
+<% @artist.photos.each do |photo| %>
+  <center> <%= image_tag photo.image, :size => '500x500'%></center>
+<% end %>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Songlist</title>
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 18px;
+    }
+
+    .container {
+      margin: 20px auto;
+      width: 500px;
+      border: 1px solid #e6e6e6;
+      border-radius: 3px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      padding: 0 0 20px;
+    }
+
+    input#new-song {
+      display: block;
+      width: 478px;
+      border-radius: 3px;
+      border: 1px solid #e6e6e6;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    ul#songlist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul#songlist li {
+      padding: 5px;
+      border: 1px solid #e6e6e6;
+      border-radius: 3px;
+    }
+
+    ul#songlist li:hover {
+      background-color: #e6e6e6;
+    }
+
+    ul#songlist .song.completed label {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .footer {
+      margin-top: 10px;
+      background: #323232;
+      color: #e6e6e6;
+      padding: 5px;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    .footer a:link,
+    .footer a:hover,
+    .footer a:visited {
+      color: #e6e6e6;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Songlist</h1>
+
+  <form>
+    <input type="text" id="new-song" placeholder="Add a new song">
+  </form>
+
+  <ul id="songlist">
+    <% @artist.songs.each do |song| %>
+    <li class="song">
+      <input id="song-1" type="checkbox" value="1">
+      <label for="song-1"><%= song.name %></label>
+    </li>
+        <% end %>
+    <li class="song completed">
+      <input id="song-2" type="checkbox" value="1" checked>
+      <label for="song-2">Dust the vases</label>
+    </li>
+  </ul>
+  <div class="footer">
+    Titles: <span id="total-count">1</span>
+  </div>
+</div>
+
+<script>
+  // select the element containing the count
+  var totalCount = document.getElementById('total-count');
+  // count the number of song's by their class name
+  var totalSongs = document.getElementsByClassName("song").length;
+  // update the HTML inside the counter element
+  totalCount.innerHTML = totalSongs;
+</script>
+</body>
